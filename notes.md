@@ -2,6 +2,10 @@
 
 This is me modifying notes.md
 
+## First Notes
+
+I learned a lot about how to commit, push, and pull. I also learned how to clone a repository. I also learned how to make changes using VS Code and GitHub web console.
+
 [My startup - Simon](https://simon.cs260.click)
 
 ## Helpful links
