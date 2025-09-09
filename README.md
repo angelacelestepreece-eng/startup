@@ -59,11 +59,11 @@ I am going to use the required technologies in the following ways.
 - **CSS** - Responsive styling for mobile and desktop. Clean layout with readable fonts, whitespace, and color-coded status. Visual feedback for completed tasks and group activity
 - **React** - React components for login, goal list, task check-off, group feed, and use of React for routing and components.
 - **Service** - Backend service with endpoints for:
-      - login
-      - retrieve group goals
-      - create a new group goal
-      - mark a task as complete
-      - get group progress and contributions
+  - login
+  - retrieve group goals
+  - create a new group goal
+  - mark a task as complete
+  - get group progress and contributions
 
 - **DB/Login** - Stores users, group goals, and task completion status in database. Register and login users. Credentials securely stored in database. Users must be authenticated to view or update goals.
 - **WebSocket** - As users mark tasks complete, the update is broadcast to all group members in real time. 
