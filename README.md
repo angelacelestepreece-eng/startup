@@ -1,10 +1,6 @@
-# Your startup name here
+# Group Goal
 
 [My Notes](notes.md)
-
-This is me modifying readme.md
-
-I'm modifying again but using the GitHub web console
 
 A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -23,14 +19,14 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Have you ever wanted to save money for a trip with your friends, or finally get people in your group project at school to actually contribute? The Group Goal application is for users to stay consistent and motivated as a team. Users can set personalized goals for their group and keep each other accountable. As users check off tasks, progress is shared live with the group. With everyone working together, goals can finally become reality.
 
 ### Design
 
@@ -47,20 +43,30 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTPS
+- Ability to create group goals
+- Check off tasks
+- Live group progress
+- Accountability feed
+- Results are persistently stored
+- Ability for admin to create and delete group goals
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML structure for the application. Two HTML pages. One for login and one for habit dashboard. Includes hyperlinks to group progress and habit setup.
+- **CSS** - Responsive styling for mobile and desktop. Clean layout with readable fonts, whitespace, and color-coded status. Visual feedback for completed tasks and group activity
+- **React** - React components for login, goal list, task check-off, group feed, and use of React for routing and components.
+- **Service** - Backend service with endpoints for:
+      - login
+      - retrieve group goals
+      - create a new group goal
+      - mark a task as complete
+      - get group progress and contributions
+
+- **DB/Login** - Stores users, group goals, and task completion status in database. Register and login users. Credentials securely stored in database. Users must be authenticated to view or update goals.
+- **WebSocket** - As users mark tasks complete, the update is broadcast to all group members in real time. 
 
 ## 🚀 AWS deliverable
 
