@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Have you ever wanted to save money for a trip with your friends, or finally get people in your group project at school to actually contribute? The Group Goal application is for users to stay consistent and motivated as a team. Users can set personalized goals for their group and keep each other accountable. As users check off tasks, progress is shared live with the group. With everyone working together, goals can finally become reality.
+Have you found yourself exhausted trying to encourage friends or classmates to achieve a goal together? Maybe you and your friends never seem to start saving for that dream trip or your classmates aren't contributing to the group project. The Group Goal application is for users to stay consistent and motivated towards achieving their goals as a team. Users can set personalized goals for their group and keep each other accountable. As users check off tasks, progress is shared live with the group. With everyone working together, goals can finally become reality.
 
 ### Design
 
