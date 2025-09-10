@@ -16,8 +16,8 @@ I learned a lot about how to commit, push, and pull. I also learned how to clone
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 54.84.21.223
+I followed all the instructions and it made sense! At first to see if it was working I put in https://54.84.21.223 and that did not work. But I saw the common problems and the bottom and I realized that I needed to put http not https. Now everything is working.
 
 ## Caddy
 
