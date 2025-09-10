@@ -51,8 +51,6 @@ sequenceDiagram
 - Ability to create group goals
 - Check off tasks
 - Live group progress
-- Accountability feed
-- Results are persistently stored
 - Ability for admin to create and delete group goals
 
 ### Technologies
