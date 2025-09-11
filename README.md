@@ -30,7 +30,7 @@ Have you found yourself exhausted trying to motivate friends, classmates, or cow
 
 ### Design
 
-<img width="3024" height="1866" alt="design_image" src="https://github.com/user-attachments/assets/d48305dd-b450-4a94-85cf-9778454f0263" />
+![Design Image](design_image.PNG)
 
 Here's a sequence diagram that shows how a group of two would interact with the backend to update progress of their goal.
 
