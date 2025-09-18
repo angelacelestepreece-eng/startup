@@ -17,6 +17,8 @@ I followed all the instructions and it made sense! At first to see if it was wor
 
 ## Caddy
 
+Got a domain name: groupgoal.click
+I followed all the instructions and it made sense. I can now open the link and it is secure! I can open it using https://groupgoal.click.
 
 ## HTML
 
