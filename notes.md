@@ -22,6 +22,7 @@ I followed all the instructions and it made sense. I can now open the link and i
 
 ## HTML
 
+I learned a lot on how to actually use HTML. I know how to add images, links, and making headers/footers. 
 
 ## CSS
 
