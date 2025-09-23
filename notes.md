@@ -24,6 +24,10 @@ I followed all the instructions and it made sense. I can now open the link and i
 
 I learned a lot on how to actually use HTML. I know how to add images, links, and making headers/footers. 
 
+Link to my startup HTML: https://startup.groupgoal.click.
+
+Going through the Simon code, really helped me get a feel as to how to actually implement an application.
+
 ## CSS
 
 
