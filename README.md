@@ -77,15 +77,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **HTML pages** - I did complete this part of the deliverable.
+- [x] **HTML pages** - I did complete this part of the deliverable. Pages: Home(index), Dashboard, Progress, About.
 - [x] **Proper HTML element usage** - I did complete this part of the deliverable.
 - [x] **Links** - I did complete this part of the deliverable.
 - [x] **Text** - I did complete this part of the deliverable.
-- [x] **3rd party API placeholder** - I did complete this part of the deliverable.
+- [x] **3rd party API placeholder** - I did complete this part of the deliverable. At the bottom of the Dashboard page. Goal inspo from 3rd party.
 - [x] **Images** - I did complete this part of the deliverable.
-- [x] **Login placeholder** - I did complete this part of the deliverable.
-- [x] **DB data placeholder** - I did complete this part of the deliverable.
-- [x] **WebSocket placeholder** - I did complete this part of the deliverable.
+- [x] **Login placeholder** - I did complete this part of the deliverable. On the Home(index.html) page.
+- [x] **DB data placeholder** - I did complete this part of the deliverable. At the top of the Dashboard page. Stores different goals.
+- [x] **WebSocket placeholder** - I did complete this part of the deliverable. On the Progress page.
 
 ## 🚀 CSS deliverable
 

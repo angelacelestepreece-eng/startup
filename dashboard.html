@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon</title>
-    <link rel="icon" href="favicon.ico" />
+    <title>GroupGoal</title>
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
+      <h1>GroupGoal</h1>
 
       <!-- Navigation elements -->
       <nav>
@@ -33,25 +32,37 @@
       <!--Placeholder: React component-->
       <div id="goal-list">
         <h2>Group Goals</h2>
-        <!--Placeholder: get goals from backend service-->
-      </div>
-
-      <!--Placeholder: real-time WebSocket updates-->
-      <div id="progress-feed">
-        <h2>Add a New Goal</h2>
-        <!--Placeholder: updates from WebSocket-->
+        <p>Placeholder: get goals from the database using backend service and React</p>
+        <ul>
+          <li><u><strong>Goal:</strong></u> Save $500 for trip - <strong>Status:</strong> Completed - <strong>Members: </strong>Parker, Molly</li>
+          <li><u><strong>Goal:</strong></u> Finish school project - <strong>Status:</strong> Completed - <strong>Members: </strong>Jane, Will</li>
+        </ul>
       </div>
 
       <!--Placeholder: submit to backend and update UI with React-->
       <div id="add-goal">
-        <!--Placeholder: Use React for handling and validation-->
         <h2>Add a New Goal</h2>
+        <p>Placeholder: Use React for handling and validation and submit data to the backend.</p>
+        <form>
+          <label for="goal-name">Goal Name:</label>
+          <input type="text" id="goal-name" placeholder="Enter your goal" />
+          <button type="submit">Add Goal</button>
+        </form>
       </div>
+
+      <!-- Placeholder: third-party service call -->
+       <section id="goal-inspo">
+        <h2>Goal Inspiration</h2>
+          <p>This will show suggested goals from a third-party</p>
+          <ul>
+            <li>Save $300</li>
+            <li>Finish Pride and Prejudice for book club</li>
+          </ul>
+       </section>
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
       <br />
       <a href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
     </footer>
