@@ -30,6 +30,7 @@ Going through the Simon code, really helped me get a feel as to how to actually 
 
 ## CSS
 
+One thing that I found very interesting from going through these modules is how websites can be formatted differently for different screen sizes. I've always wondered how an application can do that, and now I know. 
 
 ## React Part 1: Routing
 
