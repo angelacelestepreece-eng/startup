@@ -5,11 +5,18 @@ body {
 }
 
 .pink-bg {
-  background-color: #F7B2C8;
+  background-color: #e4b0b6;
 }
+
+.cream-bg {
+  background-color: #f6f1e7;
+}
+
+
 
 header {
   flex: 0 80px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 main {
@@ -18,6 +25,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  font-family: 'Courier New', Courier, monospace;
 }  
 
 footer {
@@ -34,7 +42,7 @@ menu {
 
 .navbar-brand {
   padding-left: 0.3em;
-  border-bottom: solid rgb(38, 170, 168) thin;
+  border-bottom: solid rgb(240, 243, 243) thin;
 }
 
 menu .nav-item {
