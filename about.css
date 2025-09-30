@@ -1,8 +1,8 @@
 .picture-box {
-  height: calc(100px + 1em);
+  height: calc(200px + 1em);
   margin-bottom: 1em;
-  padding: 0.5em;
-  background: rgb(86, 89, 93);
+  padding: 0.2em;
+  background: rgb(3, 3, 3);
   border-radius: 5px;
 }
 
