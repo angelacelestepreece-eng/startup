@@ -93,9 +93,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **Header, footer, and main content body** - I did complete this part of the deliverable. Each page has this.
 - [x] **Navigation elements** - I did complete this part of the deliverable. Each page has navigation elements located at the top.
-- [x] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [x] **Application elements** - I did complete this part of the deliverable. The Dashboard has the Progress pages have what the elements of the application will look like.
-- [x] **Application text content** - I did complete this part of the deliverable.
+- [x] **Responsive to window resizing** - I did complete this part of the deliverable. On the dashboard the add goal resized and the goal list resizes.
+- [x] **Application elements** - I did complete this part of the deliverable. The Dashboard and the Progress pages have what the elements of the application will look like.
+- [x] **Application text content** - I did complete this part of the deliverable. Played with fonts and found one that I liked.
 - [x] **Application images** - I did complete this part of the deliverable. The About page has an image on it aslo I added a different icon.
 
 ## 🚀 React part 1: Routing deliverable
