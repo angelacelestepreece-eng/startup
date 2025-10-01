@@ -4,3 +4,94 @@ td {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.dashboard {
+  padding: 2em;
+  min-height: 100 vh;
+}
+
+.add-goal-btn {
+  margin: 0 auto 2em auto;
+  padding: 0.75em 1.5em;
+  font-size: 0.7em;
+  background-color: #b5c7d3;
+  color: black;
+  border: none;
+  border-radius: 8px;
+}
+
+.goal-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5em;
+  padding: 2em;
+}
+
+.goal-card {
+  background-color: white;
+  border: 1px solid #b5c7d3;
+  border-radius: 10px;
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0,1);
+  text-align: center;
+}
+
+.goal-card h3 {
+  margin-top:0;
+  font-size: 1.2em;
+  color: black;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  margin-top: 1em;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar{
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value{
+  background-color: #b5c7d3;
+  border-radius: 10px;
+}
+
+#goal-inspo {
+  background-color: #b5c7d3;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 2em;
+  margin: 2em auto;
+  max-width: 600px;
+  box-shadow: 0 2px 9px rgba(0,0,0,0,1);
+  text-align: center;
+}
+
+#goal-inspo h2 {
+  font-size: 1.5em;
+  color: black;
+  margin-bottom: 0.5em;
+}
+
+#goal-inspo p {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1em;
+}
+
+#goal-inspo ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#goal-inspo li {
+  background-color: white;
+  border-radius: 6px;
+  padding: 0.75em;
+  margin: 0.5em 0;
+  font-weight: 500;
+  color: black;
+}

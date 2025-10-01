@@ -8,7 +8,7 @@
     <link rel="icon" href="flower (1).ico" />
 
     <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="scores.css" />
+    <link rel="stylesheet" href="dashboard.css" />
     
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -41,28 +41,40 @@
     </header>
 
     <main class="cream-bg text-dark">
-      <h1>GroupGoal Dashbaord</h1>
-
-      <!--Placeholder: React component-->
-      <div id="goal-list">
-        <h2>Group Goals</h2>
-        <p>Placeholder: get goals from the database using backend service and React</p>
-        <ul>
-          <li><u><strong>Goal:</strong></u> Save $500 for trip - <strong>Status:</strong> Completed - <strong>Members: </strong>Parker, Molly</li>
-          <li><u><strong>Goal:</strong></u> Finish school project - <strong>Status:</strong> Completed - <strong>Members: </strong>Jane, Will</li>
-        </ul>
-      </div>
+      <h1>GroupGoal Dashboard</h1>
 
       <!--Placeholder: submit to backend and update UI with React-->
-      <div id="add-goal">
-        <h2>Add a New Goal</h2>
-        <p>Placeholder: Use React for handling and validation and submit data to the backend.</p>
+      <div class="add_goal">
         <form>
-          <label for="goal-name">Goal Name:</label>
-          <input type="text" id="goal-name" placeholder="Enter your goal" />
-          <button type="submit">Add Goal</button>
+          <label for="goal-name">New Goal:</label>
+          <input type="text" id="goal-name" placeholder="Enter New Goal" />
+          <button type="submit" class="add-goal-btn">+ Add Goal</button>
         </form>
       </div>
+
+      <!--Placeholder: React component-->
+      <section class="goal-list">
+        <div class="goal-card">
+          <h3>Save $500 For Trip</h3>
+          <progress value="40" max="100"></progress>
+        </div>
+
+        <div class="goal-card">
+          <h3>Finish School Project</h3>
+          <progress value="80" max="100"></progress>
+        </div>
+
+        <div class="goal-card">
+          <h3>Read Harry Potter</h3>
+          <progress value="10" max="100"></progress>
+        </div>
+
+        <div class="goal-card">
+          <h3>Financial Report</h3>
+          <progress value="90" max="100"></progress>
+        </div>
+      </section>
+
 
       <!-- Placeholder: third-party service call -->
        <section id="goal-inspo">

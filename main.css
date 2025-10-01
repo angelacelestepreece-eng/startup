@@ -4,6 +4,12 @@ body {
   min-width: 375px;
 }
 
+.pink-btn {
+  background-color: #e4b0b6;
+  border-color: #e4b0b6;
+  border-radius: 6px;
+}
+
 .pink-bg {
   background-color: #e4b0b6;
 }
