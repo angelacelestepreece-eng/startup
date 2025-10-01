@@ -28,6 +28,19 @@
   border: 1px solid #ccc;
 }
 
+@media (max-width: 600px) {
+  .goal-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .goal-form input,
+  .add-goal-btn {
+    width: 100%;
+    font-size: 1em;
+  }
+}
+
 .goal-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -68,13 +81,13 @@ progress::-webkit-progress-value{
 }
 
 @media (max-width: 800px){
-  .goal-grid {
+  .goal-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 500px){
-  .goal-grid{
+  .goal-list{
     grid-template-columns: 1fr;
   }
 }
