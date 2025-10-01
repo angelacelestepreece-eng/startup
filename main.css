@@ -59,12 +59,19 @@ menu {
 }
 
 .navbar-brand {
+  font-size: 1.5em !important;
+  font-weight: bold;
+  text-align: center;
   padding-left: 0.3em;
   border-bottom: solid rgb(240, 243, 243) thin;
 }
 
 menu .nav-item {
   padding: 0 0.3em;
+}
+
+.nav-link.active {
+  color: #f8f9f9 !important;
 }
 
 footer a {
@@ -80,5 +87,22 @@ footer a {
   }
   main {
     flex: 1 100vh;
+  }
+}
+
+@media (max-width: 600px) {
+  menu {
+    flex-direction: column !important;
+    align-items: center;
+    padding: 0;
+  }
+
+  menu .nav-item {
+    padding: 0.5em 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.2em;
+    text-align: center;
   }
 }

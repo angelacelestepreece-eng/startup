@@ -52,6 +52,18 @@ progress::-webkit-progress-value{
   border-radius: 10px;
 }
 
+@media (max-width: 800px){
+  .goal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px){
+  .goal-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
 #goal-inspo {
   background-color: #b5c7d3;
   border: 1px solid white;
