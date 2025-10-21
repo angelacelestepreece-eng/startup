@@ -14,7 +14,7 @@ export function About() {
         <p>This is where I will describe how users actually use the app.</p>
       </section>
 
-      <div id="picture" class="picture-box"><img width="400px" src="sunset.png" alt="random" /></div>
+      <div id="picture" className="picture-box"><img width="400px" src="sunset.png" alt="random" /></div>
 
     </main>
   );
