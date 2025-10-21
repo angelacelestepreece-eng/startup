@@ -16,22 +16,28 @@ export default function App() {
             <a class="navbar-brand" href="#">GroupGoal</a>
             <menu class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <NavLink className='nav-link' to='login'>Login</NavLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.html">Dashboard</a>
+                <NavLink className='nav-link' to='dashboard'>Dashboard</NavLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="progress.html">Progress</a>
+                <NavLink className='nav-link' to='progress'>Progress</NavLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <NavLink className='nav-link' to='about'>About</NavLink>
             </li>
             </menu>
         </nav>
         </header>
 
-        <main>App components go here</main>
+        <Routes>
+            <Route path='/' element={<Login />} exact />
+            <Route path='/play' element={<Play />} />
+            <Route path='/scores' element={<Scores />} />
+            <Route path='/about' element={<About />} />
+            <Route path='*' element={<NotFound />} />
+        </Routes>
 
         <footer class="pink-bg text-white-50">
         <div class="container-fluid">
@@ -41,4 +47,8 @@ export default function App() {
         </div>
     </BrowserRouter>
   );
+
+  function NotFound() {
+    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+  }
 }
