@@ -1,36 +1,37 @@
 import React from 'react';
 import './dashboard.css';
+import { Form, Button, ProgressBar } from 'react-bootstrap';
 
 export function Dashboard() {
   return (
     <main className="cream-bg text-dark">
       <h1>GroupGoal Dashboard</h1>
-      <div class="add_goal">
-        <form class="goal-form">
-          <label for="goal-name">New Goal:</label>
-          <input type="text" id="goal-name" placeholder="Enter New Goal"/>
-          <button type="submit" class="add-goal-btn">+ Add Goal</button>
-        </form>
+      <div className="add_goal">
+        <Form className="goal-form">
+          <Form.Label htmlFor="goal-name">New Goal:</Form.Label>
+          <Form.Control type="text" id="goal-name" placeholder="Enter New Goal"/>
+          <Button type="submit" className="add-goal-btn mt-2">+ Add Goal</Button>
+        </Form>
       </div>
-      <section class="goal-list">
-        <div class="goal-card">
+      <section className="goal-list">
+        <div className="goal-card">
           <h3>Save $500 For Trip</h3>
-          <progress value="40" max="100"></progress>
+          <ProgressBar now={40} variant="secondary" />
         </div>
 
-        <div class="goal-card">
+        <div className="goal-card">
           <h3>Finish School Project</h3>
-          <progress value="80" max="100"></progress>
+          <ProgressBar now={80} variant="secondary" />
         </div>
 
-        <div class="goal-card">
+        <div className="goal-card">
           <h3>Read Harry Potter</h3>
-          <progress value="10" max="100"></progress>
+          <ProgressBar now={10} variant="secondary" />
         </div>
 
-        <div class="goal-card">
+        <div className="goal-card">
           <h3>Financial Report</h3>
-          <progress value="90" max="100"></progress>
+          <ProgressBar now={90} variant="secondary" />
         </div>
       </section>
 
