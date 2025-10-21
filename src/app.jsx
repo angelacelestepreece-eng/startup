@@ -42,10 +42,11 @@ export default function App() {
         </Routes>
 
         <footer className="pink-bg text-white-50">
-            <div className="container-fluid">
-                <a className="text-reset" href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
-            </div>
-        </footer>
+        <div className="container-fluid">
+          <span className="text-reset">Angela Preece</span>
+          <a className="text-reset" href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
+        </div>
+      </footer>
         </div>
     </BrowserRouter>
   );

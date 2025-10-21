@@ -16,6 +16,9 @@ body {
 
 .cream-bg {
   background-color: #f6f1e7;
+  min-height: 97vh;
+  display:flex;
+  flex-direction: column;
 }
 
 .blue-bg {
@@ -38,7 +41,9 @@ header {
 }
 
 main {
-  flex: 1 calc(100vh - 110px);
+  flex: 1;
+  padding-top: 90px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +52,8 @@ main {
 }  
 
 footer {
-  flex: 0 30px;
+  height: 0 30px;
+  margin-top: auto;
 }
 
 menu {
