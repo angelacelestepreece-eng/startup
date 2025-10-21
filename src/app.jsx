@@ -12,11 +12,13 @@ export default function App() {
     <BrowserRouter>
         <div className="pink-bg text-dark">
         <header>
-        <nav>
-            <a className="navbar-brand" href="#">GroupGoal</a>
-            <ul className="navbar-nav">
+        <nav className="navbar fixed-top navbar-dark pink-bg">
+            <div className="navbar-brand">
+                GrouppGoal
+            </div>
+            <menu className='navbar-nav'>
             <li className="nav-item">
-                <NavLink className='nav-link' to='login'>Login</NavLink>
+                <NavLink className='nav-link' to="">Login</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink className='nav-link' to='dashboard'>Dashboard</NavLink>
@@ -27,7 +29,7 @@ export default function App() {
             <li className="nav-item">
                 <NavLink className='nav-link' to='about'>About</NavLink>
             </li>
-            </ul>
+            </menu>
         </nav>
         </header>
 
@@ -39,9 +41,9 @@ export default function App() {
             <Route path='*' element={<NotFound />} />
         </Routes>
 
-        <footer class="pink-bg text-white-50">
-            <div class="container-fluid">
-                <a class="text-reset" href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
+        <footer className="pink-bg text-white-50">
+            <div className="container-fluid">
+                <a className="text-reset" href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
             </div>
         </footer>
         </div>
