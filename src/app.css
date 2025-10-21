@@ -36,13 +36,13 @@ body {
 
 
 header {
-  flex: 0 80px;
+  height: 80px;
   font-family: 'Courier New', Courier, monospace;
 }
 
 main {
   flex: 1;
-  padding-top: 90px;
+  padding-top: 80px;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
@@ -51,8 +51,14 @@ main {
   font-family: 'Courier New', Courier, monospace;
 }  
 
+@media (max-width: 600px) {
+  main{
+    padding-top: 100px;
+  }
+}
+
 footer {
-  height: 0 30px;
+  height: 30px;
   margin-top: auto;
 }
 
