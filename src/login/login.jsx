@@ -43,8 +43,12 @@ export function Login({userName, authState, onAuthChange}) {
             <InputGroup.Text>🔒</InputGroup.Text>
             <Form.Control type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           </InputGroup>
-          <Button onClick={handleLogin} className="pink-btn me-2">Login</Button>
-          <Button onClick={handleCreate} className="pink-btn">Create</Button>
+          {authState === AuthState.Unauthenticated && (
+            <>
+              <Button onClick={handleLogin} className="pink-btn me-2">Login</Button>
+              <Button onClick={handleCreate} className="pink-btn">Create</Button>
+            </>
+          )}
         </Form>
         {status && <p className="mt-3 text-success">{status}</p>}
         {authState === AuthState.Authenticated && (
