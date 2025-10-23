@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './dashboard.css';
 import { Form, Button, ProgressBar } from 'react-bootstrap';
 
@@ -6,7 +6,7 @@ function getMockGoalSuggestion() {
   return{ goal: 'Read Pride and Prejudice' };
 }
 
-function landGoals() {
+function loadGoals() {
   const stored = localStorage.getItem('goals');
   return stored ? JSON.parse(stored) : [];
 }
@@ -49,7 +49,7 @@ function handleAddGoal(e) {
   return (
     <main className="cream-bg text-dark">
       <h1>GroupGoal Dashboard</h1>
-      <p>Welcome, {username}!</p>
+      <p>Welcome, {userName}!</p>
       <div className="add_goal">
         <Form className="goal-form" onSubmit={handleAddGoal}>
           <Form.Label htmlFor="goal-name">New Goal:</Form.Label>
@@ -70,7 +70,7 @@ function handleAddGoal(e) {
         <h2>Goal Inspiration</h2>
           <p>This will show suggested goals from a third-party</p>
           <ul>
-            <li>{goalSuggestion.goal}</li>
+            <li>{suggestion.goal}</li>
           </ul>
        </section>
     </main>
