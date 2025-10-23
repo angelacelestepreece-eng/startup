@@ -10,7 +10,7 @@ export function Login({userName, authState, onAuthChange}) {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('groupgoal-email');
+    const savedEmail = localStorage.getItem('username');
     if (savedEmail) setEmail(savedEmail);
   }, []);
 
@@ -23,7 +23,7 @@ export function Login({userName, authState, onAuthChange}) {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    localStorage.setItem('groupgoal-email', email);
+    localStorage.setItem('userName', email);
     onAuthChange(email, AuthState.Authenticated);
     setStatus(`Account created for ${email}`);
   }
