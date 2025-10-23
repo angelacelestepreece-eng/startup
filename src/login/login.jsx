@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 
@@ -16,7 +16,7 @@ export function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     localStorage.setItem('groupgoal-email', email);
-    setStatus('Logged in as ${email}$');
+    setStatus(`Logged in as ${email}`);
   };
 
   const handleCreate = (e) => {

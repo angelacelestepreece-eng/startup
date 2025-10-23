@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './progress.css';
 
 export function Progress() {
@@ -20,7 +20,7 @@ export function Progress() {
       });
     }, 3000);
 
-    return () -> clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   return (
