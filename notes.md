@@ -45,11 +45,11 @@ One thing that I found very interesting from going through these modules is how 
   
 3) In the following code, what is the difference between the #title and .grid selector?
    
-  #title selects the element with the ID "title", while .grid selects all elements with the       class "grid"
+  #title selects the element with the ID "title", while .grid selects all elements with the class "grid"
   
 4) In the following code, what is the difference between padding and margin?
    
-   Padding is the space between the content and the border; margin is the space outside the       border.
+   Padding is the space between the content and the border; margin is the space outside the border.
    
 5) Given this HTML and this CSS how will the images be displayed using flex?
     
@@ -80,66 +80,66 @@ One thing that I found very interesting from going through these modules is how 
     });
     This logs "Button clicked!" to the console when the button is clicked.
     
-10) What does the following line of Javascript do using a # selector?
+11) What does the following line of Javascript do using a # selector?
     
     documet.querySelector("#title");
     Selects the element with the ID "title". Grabs the first element in the DOM with id="title"
     
-11) Which of the following are true? (mark all that are true about the DOM)
+12) Which of the following are true? (mark all that are true about the DOM)
     
     The DOM represents the structure of a webpage as a tree of objects
     The DOM allows JavaScript to manipulate HTML and CSS
     
-12) By default, the HTML span element has a default CSS display property value of:
+13) By default, the HTML span element has a default CSS display property value of:
     
     inline - it flows with surrounding text and doesn't start on a new line
     block elements (div and p) take up the full width
     flex and none are not default values for span
     
-13) How would you use CSS to change all the div elements to have a background color of red?
+14) How would you use CSS to change all the div elements to have a background color of red?
     
     div {background-color: red;}
     
-14) How would you display an image with a hyperlink in HTML?
+15) How would you display an image with a hyperlink in HTML?
     
-    <a href="link.html"><img src="image.jpg"></a>
-    <a> - anchor tag, makes it clickable
+    "<a /href="link.html"><img /src="image.jpg">""/a>"
+    "<a" - anchor tag, makes it clickable
     
-15) In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+16) In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
 
     Content(Text or image) -> Padding(Space between content and border) -> Border(Edge around     the element) -> Margin(Space outside the border, separating the elements from others)
         
-16) Given the following HTML, what CSS would you use to set the text "trouble" to green and leave the "double" text unaffected?
+17) Given the following HTML, what CSS would you use to set the text "trouble" to green and leave the "double" text unaffected?
 
-       <p><span class="green">trouble</span> double</p> 
+       <p><span /class="green">trouble</span> double</p> 
        .green {color: green;}
     
-17) What will the following code output when executed using a for loop and console.log?
+18) What will the following code output when executed using a for loop and console.log?
 
     for (let i = 0; i < 3; i++) {
       console.log(i);
     }
     output: 0 1 2
     
-18) How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
+19) How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
 
     document.getElementById("byu").style.color = "green";
     querySelector("#byu").style.color = "green"; would also work
     
-19) What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
+20) What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
 
-    paragraph: <p>
-    ordered list: <ol>
-    unordered list: <ul>
-    second level heading: <h2>
-    first level heading: <h1>
-    third level heading: <h3>
+    paragraph: p
+    ordered list: ol
+    unordered list: ul
+    second level heading: h2
+    first level heading: h1
+    third level heading: h3
     
-20) How do you declare the document type to be html?
+21) How do you declare the document type to be html?
 
-    <!DOCTYPE html>
+    "<!DOCTYPE html"
 
-21) What is valid javascript syntax for if, else, for, while, switch statements?
+22) What is valid javascript syntax for if, else, for, while, switch statements?
 
     if: if(x) {}
     else: if(x) {} else {}
@@ -168,7 +168,7 @@ One thing that I found very interesting from going through these modules is how 
 
 26) Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
 
-    <span id='animal'>animal</span>fish
+    <span /id='animal'>animal</span>fish
     document.getElementByID('animal').innerText = 'crow';
 
 27) Which of the following correctly describes JSON?
@@ -223,6 +223,7 @@ One thing that I found very interesting from going through these modules is how 
 36) What will the following code using Promises output when executed?
 
     Promise.resolve('done').then(console.log);
+    done
 
 ## React Part 2: Reactivity
 
