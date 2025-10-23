@@ -46,6 +46,16 @@ function handleAddGoal(e) {
   }
 }
 
+function handleProgressUpdate(index) {
+  setGoals((prevGoals) =>
+    prevGoals.map((goal, i) =>
+      i===index
+        ? { ...goal, progress: Math.min(goal.progress + 10, 100)}
+        : goal
+    )
+  );
+}
+
   return (
     <main className="cream-bg text-dark">
       <h1>GroupGoal Dashboard</h1>
@@ -62,6 +72,11 @@ function handleAddGoal(e) {
           <div className="goal-card" key={index}>
             <h3>{goal.name}</h3>
             <ProgressBar now={goal.progress} variant="secondary" />
+            <Button
+              className="add-goal-btn mt-2"
+              onClick={() => handleProgressUpdate(index)}>
+              + Update Progress
+            </Button>
           </div>
         ))}
       </section>

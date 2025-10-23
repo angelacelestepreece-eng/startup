@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {AuthState} from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
@@ -8,6 +9,25 @@ import { Progress } from './progress/progress';
 import { About } from './about/about';
 
 export default function App() {
+
+    const [authState, setAuthState] = useState(AuthState.Unknown);
+    const [userName, setUserName] = useState('');
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('userName');
+        if(storedUser) {
+            setUserName(storedUser);
+            setAuthState(AuthState.Authenticated);
+        } else {
+            setAuthState(AuthState.Unauthenticated);
+        }
+    }, []);
+
+    function handleAuthChange(user, newState) {
+        setUserName(user);
+        setAuthState(newState);
+    }
+
   return (
     <BrowserRouter>
         <div className="pink-bg text-dark">
@@ -20,24 +40,35 @@ export default function App() {
             <li className="nav-item">
                 <NavLink className='nav-link' to="/">Login</NavLink>
             </li>
-            <li className="nav-item">
-                <NavLink className='nav-link' to='dashboard'>Dashboard</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink className='nav-link' to='progress'>Progress</NavLink>
-            </li>
+
+            {authState === AuthState.Authenticated && (
+                <>
+                <li className="nav-item">
+                    <NavLink className='nav-link' to='dashboard'>Dashboard</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className='nav-link' to='progress'>Progress</NavLink>
+                </li>
+                </>
+            )}
+
             <li className="nav-item">
                 <NavLink className='nav-link' to='about'>About</NavLink>
             </li>
+            
             </menu>
         </nav>
         </header>
 
         <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/progress' element={<Progress />} />
+            <Route path='/' element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange}/>} />
             <Route path='/about' element={<About />} />
+            {authState === AuthState.Authenticated && (
+                <>
+                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/progress' element={<Progress />} />
+                </>
+            )}
             <Route path='*' element={<NotFound />} />
         </Routes>
 

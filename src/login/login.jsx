@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {AuthState} from './authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 
 
-export function Login() {
+export function Login({userName, authState, onAuthChange}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('');
@@ -15,13 +16,16 @@ export function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem('groupgoal-email', email);
+    localStorage.setItem('userName', email);
+    onAuthChange(email, AuthState.Authenticated);
     setStatus(`Logged in as ${email}`);
   };
 
   const handleCreate = (e) => {
     e.preventDefault();
     localStorage.setItem('groupgoal-email', email);
+    onAuthChange(email, AuthState.Authenticated);
+    setStatus(`Account created for ${email}`);
   }
  
 
@@ -43,6 +47,11 @@ export function Login() {
           <Button onClick={handleCreate} className="pink-btn">Create</Button>
         </Form>
         {status && <p className="mt-3 text-success">{status}</p>}
+        {authState === AuthState.Authenticated && (
+          <Button variant="secondary" className="mt-3" onClick={() => onAuthChange('', AuthState.Unauthenticated)}>
+            Logout
+          </Button>
+        )}
       </div>
     </main>
   );
