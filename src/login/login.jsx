@@ -10,7 +10,7 @@ export function Login({userName, authState, onAuthChange}) {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('username');
+    const savedEmail = localStorage.getItem('userName');
     if (savedEmail) setEmail(savedEmail);
   }, []);
 
@@ -25,7 +25,7 @@ export function Login({userName, authState, onAuthChange}) {
     if (response.ok) {
       const data = await response.json();
       onAuthChange(data.email, AuthState.Authenticated);
-      localStorage.setItem('username', data.email);
+      localStorage.setItem('userName', data.email);
       setStatus(`Logged in as ${data.email}`);
       setPassword('');
     } else {
@@ -44,7 +44,7 @@ export function Login({userName, authState, onAuthChange}) {
     if (response.ok) {
       const data = await response.json();
       onAuthChange(data.email, AuthState.Authenticated);
-      localStorage.setItem('username', data.email);
+      localStorage.setItem('userName', data.email);
       setStatus(`Account created for ${data.email}`);
       setPassword('');
     } else {

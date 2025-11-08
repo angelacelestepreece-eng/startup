@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './progress.css';
 
 export function Progress() {
-  const [updates, setUpdates] = useState([]);
+  const [serverUpdates, setServerUpdates] = useState([]);
+  const [mockUpdates, setMockUpdates] = useState([]);
 
   useEffect(() => {
     const loadServerUpdates = () => {
@@ -10,16 +11,12 @@ export function Progress() {
         .then(res => res.json())
         .then(data => {
           const formatted = data.map(item => item.msg);
-          setUpdates(prev => {
-            const combined = [...formatted, ...prev];
-            return combined.slice(0, 10);
-          });
+          setServerUpdates(formatted);
         })
         .catch(err => console.error(err));
     };
 
     loadServerUpdates();
-
     const serverInterval = setInterval(loadServerUpdates, 5000);
 
     const mockMessages = [
@@ -31,7 +28,7 @@ export function Progress() {
     const mockInterval = setInterval(() => {
       const nextUpdate = mockMessages[index % mockMessages.length];
       index++;
-      setUpdates(prev => [nextUpdate, ...prev].slice(0, 10));
+      setMockUpdates(prev => [nextUpdate, ...prev].slice(0, 5)); // keep 5 mocks
     }, 3000);
 
     return () => {
@@ -40,6 +37,10 @@ export function Progress() {
     };
   }, []);
 
+  const combined = [...mockUpdates, ...serverUpdates];
+  const unique = Array.from(new Set(combined));
+  const latestTen = unique.slice(0, 10);
+
   return (
     <main className="cream-bg text-dark">
       <h1>Group Progress Feed</h1>
@@ -47,7 +48,7 @@ export function Progress() {
         <h2>Live Group Activity</h2>
         <p>Updates appear every few seconds</p>
         <ul>
-          {updates.map((update, i) => (
+          {latestTen.map((update, i) => (
             <li key={i}>{update}</li>
           ))}
         </ul>
