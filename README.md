@@ -117,12 +117,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I did complete this part of the deliverable. In my server.
+- [x] **Static middleware for frontend** - I did complete this part of the deliverable. This can be seen in index.js
+- [x] **Calls to third party endpoints** - I did complete this part of the deliverable. I did change where I'm doing this though. Instead of goal inspo (hard to find). I added a quote on my about page like Simon.
+- [x] **Backend service endpoints** - I did complete this part of the deliverable. I defined create, login, logout and progress.
+- [x] **Frontend calls service endpoints** - I did complete this part of the deliverable. Called endpoints in login.js, dashboard.js, and progress.js
+- [x] **Supports registration, login, logout, and restricted endpoint** - I did complete this part of the deliverable.
 
 
 ## 🚀 DB deliverable
