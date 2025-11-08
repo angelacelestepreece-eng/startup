@@ -80,6 +80,7 @@ export function Login({userName, authState, onAuthChange}) {
             className="mt-3" 
             onClick={async () => {
               await fetch('/api/auth/logout', {method: 'DELETE'});
+              localStorage.removeItem('userName');
               onAuthChange('', AuthState.Unauthenticated);
             }}  
           >  
