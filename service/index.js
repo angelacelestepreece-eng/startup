@@ -6,6 +6,7 @@ const app = express();
 
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const path = require('path');
 
 let users = [];
 let progress = [];
@@ -104,8 +105,9 @@ app.use(function (err, req, res, next) {
 });
 
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
