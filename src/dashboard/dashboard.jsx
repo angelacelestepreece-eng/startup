@@ -38,23 +38,39 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-function handleAddGoal(e) {
+const handleAddGoal = async (e) => {
   e.preventDefault();
-  if (newGoal.trim()) {
-    setGoals([...goals, { name: newGoal.trim(), progress: 0}]);
+  if (!newGoal.trim()) return;
+
+  const response = await fetch('/api/progress', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(`${userName} added new goal '${newGoal}'`),
+  });
+
+  if (response.ok) {
+    setGoals([...goals, { name: newGoal, progress: 0 }]);
     setNewGoal('');
   }
-}
+};
 
-function handleProgressUpdate(index) {
-  setGoals((prevGoals) =>
-    prevGoals.map((goal, i) =>
-      i===index
-        ? { ...goal, progress: Math.min(goal.progress + 10, 100)}
-        : goal
-    )
-  );
-}
+const handleProgressUpdate = async (index) => {
+  const goal = goals[index];
+  const response = await fetch('/api/progress', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(`${userName} updated progress on '${goal.name}'`),
+  });
+
+  if (response.ok) {
+    setGoals(prevGoals =>
+      prevGoals.map((g, i) =>
+        i === index ? { ...g, progress: Math.min(g.progress + 10, 100) } : g
+      )
+    );
+  }
+};
+
 
   return (
     <main className="cream-bg text-dark">
