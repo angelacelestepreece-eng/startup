@@ -25,6 +25,10 @@ export function Dashboard({ userName }) {
     saveGoals(goals);
   }, [goals]);
 
+  useEffect(() => {
+    fetch('')
+  })
+
   const handleAddGoal = async (e) => {
     e.preventDefault();
     if (!newGoal.trim()) return;
@@ -109,14 +113,6 @@ export function Dashboard({ userName }) {
             </Button>
           </div>
         ))}
-      </section>
-
-      <section id="goal-inspo">
-        <h2>Goal Inspiration</h2>
-        <p>This will show suggested goals from a third-party</p>
-        <ul>
-          <li>{suggestion.goal}</li>
-        </ul>
       </section>
     </main>
   );
