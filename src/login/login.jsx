@@ -25,7 +25,9 @@ export function Login({userName, authState, onAuthChange}) {
     if (response.ok) {
       const data = await response.json();
       onAuthChange(data.email, AuthState.Authenticated);
-      setStatus('Logged in as ${data.email}');
+      localStorage.setItem('username', data.email);
+      setStatus(`Logged in as ${data.email}`);
+      setPassword('');
     } else {
       setStatus('Login failed');
     }
@@ -42,7 +44,9 @@ export function Login({userName, authState, onAuthChange}) {
     if (response.ok) {
       const data = await response.json();
       onAuthChange(data.email, AuthState.Authenticated);
-      setStatus('Account created for ${data.email}');
+      localStorage.setItem('username', data.email);
+      setStatus(`Account created for ${data.email}`);
+      setPassword('');
     } else {
       setStatus('Account creation failed');
     }

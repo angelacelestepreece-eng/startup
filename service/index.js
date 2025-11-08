@@ -67,7 +67,7 @@ apiRouter.post('/progress', verifyAuth, (req, res) => {
     if (!req.body.msg) {
         return res.status(400).send({msg: 'Missing message'});
     }
-    progress.push({msg: req.body});
+    progress.push({ msg: req.body.msg });
     res.send(progress);
 });
 
