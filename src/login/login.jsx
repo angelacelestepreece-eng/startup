@@ -10,8 +10,7 @@ export function Login({userName, authState, onAuthChange}) {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('userName');
-    if (savedEmail) setEmail(savedEmail);
+    localStorage.removeItem('userName');
   }, []);
 
   const handleLogin = async (e) => {

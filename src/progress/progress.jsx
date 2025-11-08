@@ -10,7 +10,7 @@ export function Progress() {
       fetch('/api/progress')
         .then(res => res.json())
         .then(data => {
-          const formatted = data.map(item => item.msg);
+          const formatted = data.map(item => item.msg).reverse;
           setServerUpdates(formatted);
         })
         .catch(err => console.error(err));
