@@ -1,42 +1,43 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './progress.css';
 
 export function Progress() {
   const [updates, setUpdates] = useState([]);
 
   useEffect(() => {
-    fetch('/api/progress')
-      .then(res => res.json())
-      .then(data => {
-        const formatted = data.map(item =>
-          typeof item === 'string' ? item : item.msg || JSON.stringify(item)
-        );
-        setUpdates(formatted);
-      })
-      .catch(err => console.error(err));
+    const loadServerUpdates = () => {
+      fetch('/api/progress')
+        .then(res => res.json())
+        .then(data => {
+          const formatted = data.map(item => item.msg);
+          setUpdates(prev => {
+            const combined = [...formatted, ...prev];
+            return combined.slice(0, 10);
+          });
+        })
+        .catch(err => console.error(err));
+    };
 
-      const mockMessages = [
-        "Peter completed task for 'Book Report'",
-        "Lily added 'Save $500 for trip'",
-        "Brook completed task for 'Funding Project'",
-      ];
+    loadServerUpdates();
 
-      let index = 0;
-      const interval = setInterval(() => {
-        const nextUpdate = mockMessages[index % mockMessages.length];
-        index++;
-        
-        fetch('/api/progress')
-          .then(res => res.json())
-          .then(data => {
-            const formatted = data.map(item =>
-              typeof item === 'string' ? item : item.msg || JSON.stringify(item)
-            );
-            setUpdates([nextUpdate, ...formatted].slice(0,10));
-          })
-          .catch(err => console.error(err))
-      }, 3000);
-      return () => clearInterval(interval);
+    const serverInterval = setInterval(loadServerUpdates, 5000);
+
+    const mockMessages = [
+      "Peter completed task for 'Book Report'",
+      "Lily added 'Save $500 for trip'",
+      "Brook completed task for 'Funding Project'",
+    ];
+    let index = 0;
+    const mockInterval = setInterval(() => {
+      const nextUpdate = mockMessages[index % mockMessages.length];
+      index++;
+      setUpdates(prev => [nextUpdate, ...prev].slice(0, 10));
+    }, 3000);
+
+    return () => {
+      clearInterval(serverInterval);
+      clearInterval(mockInterval);
+    };
   }, []);
 
   return (
@@ -51,7 +52,6 @@ export function Progress() {
           ))}
         </ul>
       </div>
-
     </main>
   );
 }

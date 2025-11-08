@@ -14,8 +14,6 @@ function loadGoals() {
 function saveGoals(goals) {
   localStorage.setItem('goals', JSON.stringify(goals));
 }
-
-localStorage.setItem('userName','Tom');
 const userName = localStorage.getItem('userName');
 
 export function Dashboard() {
