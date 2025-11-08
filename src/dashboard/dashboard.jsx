@@ -15,9 +15,8 @@ function saveGoals(goals) {
   localStorage.setItem('goals', JSON.stringify(goals));
 }
 
-const userName = localStorage.getItem('userName');
 
-export function Dashboard() {
+export function Dashboard({ userName }) {
   const [goals, setGoals] = useState(loadGoals());
   const [newGoal, setNewGoal] = useState('');
   const [suggestion] = useState(getMockGoalSuggestion());

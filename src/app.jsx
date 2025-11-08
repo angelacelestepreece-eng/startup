@@ -9,80 +9,94 @@ import { Progress } from './progress/progress';
 import { About } from './about/about';
 
 export default function App() {
+  const [authState, setAuthState] = useState(AuthState.Unknown);
+  const [userName, setUserName] = useState('');
 
-    const [authState, setAuthState] = useState(AuthState.Unknown);
-    const [userName, setUserName] = useState('');
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('userName');
-        if(storedUser) {
-            setUserName(storedUser);
-            setAuthState(AuthState.Authenticated);
-        } else {
-            setAuthState(AuthState.Unauthenticated);
-        }
-    }, []);
-
-    function handleAuthChange(user, newState) {
-        setUserName(user);
-        setAuthState(newState);
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userName');
+    if (storedUser) {
+      setUserName(storedUser);
+      setAuthState(AuthState.Authenticated);
+    } else {
+      setAuthState(AuthState.Unauthenticated);
     }
+  }, []);
+
+  const handleAuthChange = (email, state) => {
+    setUserName(email);
+    setAuthState(state);
+  };
 
   return (
     <BrowserRouter>
-        <div className="pink-bg text-dark">
+      <div className="pink-bg text-dark">
         <header>
-        <nav className="navbar fixed-top navbar-dark pink-bg">
-            <div className="navbar-brand">
-                GroupGoal
-            </div>
-            <menu className='navbar-nav'>
-            <li className="nav-item">
-                <NavLink className='nav-link' to="/">Login</NavLink>
-            </li>
+          <nav className="navbar fixed-top navbar-dark pink-bg">
+            <div className="navbar-brand">GroupGoal</div>
+            <menu className="navbar-nav">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/">Login</NavLink>
+              </li>
 
-            {authState === AuthState.Authenticated && (
+              {authState === AuthState.Authenticated && (
                 <>
-                <li className="nav-item">
-                    <NavLink className='nav-link' to='dashboard'>Dashboard</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className='nav-link' to='progress'>Progress</NavLink>
-                </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="dashboard">Dashboard</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="progress">Progress</NavLink>
+                  </li>
                 </>
-            )}
+              )}
 
-            <li className="nav-item">
-                <NavLink className='nav-link' to='about'>About</NavLink>
-            </li>
-            
+              <li className="nav-item">
+                <NavLink className="nav-link" to="about">About</NavLink>
+              </li>
             </menu>
-        </nav>
+          </nav>
         </header>
 
         <Routes>
-            <Route path='/' element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange}/>} />
-            <Route path='/about' element={<About />} />
-            {authState === AuthState.Authenticated && (
-                <>
-                <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/progress' element={<Progress />} />
-                </>
-            )}
-            <Route path='*' element={<NotFound />} />
+          <Route
+            path="/"
+            element={
+              <Login
+                userName={userName}
+                authState={authState}
+                onAuthChange={handleAuthChange}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+          {authState === AuthState.Authenticated && (
+            <>
+              <Route path="/dashboard" element={<Dashboard userName={userName} />} />
+              <Route path="/progress" element={<Progress userName={userName} />} />
+            </>
+          )}
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <footer className="pink-bg text-white-50">
-        <div className="container-fluid">
-          <span className="text-reset">Angela Preece</span>
-          <a className="text-reset" href="https://github.com/angelacelestepreece-eng/startup.git">My GitHub</a>
-        </div>
-      </footer>
-        </div>
+          <div className="container-fluid">
+            <span className="text-reset">Angela Preece</span>
+            <a
+              className="text-reset"
+              href="https://github.com/angelacelestepreece-eng/startup.git"
+            >
+              My GitHub
+            </a>
+          </div>
+        </footer>
+      </div>
     </BrowserRouter>
   );
 
-    function NotFound() {
-        return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
-    }
+  function NotFound() {
+    return (
+      <main className="container-fluid bg-secondary text-center">
+        404: Return to sender. Address unknown.
+      </main>
+    );
+  }
 }
