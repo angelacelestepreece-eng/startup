@@ -34,7 +34,7 @@ export default function App() {
         <header>
         <nav className="navbar fixed-top navbar-dark pink-bg">
             <div className="navbar-brand">
-                GrouppGoal
+                GroupGoal
             </div>
             <menu className='navbar-nav'>
             <li className="nav-item">
