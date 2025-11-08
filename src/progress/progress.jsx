@@ -5,22 +5,38 @@ export function Progress() {
   const [updates, setUpdates] = useState([]);
 
   useEffect(() => {
-    const mockMessages = [
-      "Peter completed task for 'Book Report'",
-      "Lily added 'Save $500 for trip'",
-      "Brooke completed task for 'Funding Project'"
-    ];
+    fetch('/api/progress')
+      .then(res => res.json())
+      .then(data => {
+        const formatted = data.map(item =>
+          typeof item === 'string' ? item : item.msg || JSON.stringify(item)
+        );
+        setUpdates(formatted);
+      })
+      .catch(err => console.error(err));
 
-    let index = 0;
-    const interval = setInterval(() => {
-      setUpdates((prev) => {
+      const mockMessages = [
+        "Peter completed task for 'Book Report'",
+        "Lily added 'Save $500 for trip'",
+        "Brook completed task for 'Funding Project'",
+      ];
+
+      let index = 0;
+      const interval = setInterval(() => {
         const nextUpdate = mockMessages[index % mockMessages.length];
-        index++
-        return [nextUpdate, ...prev].slice(0,10);
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
+        index++;
+        
+        fetch('/api/progress')
+          .then(res => res.json())
+          .then(data => {
+            const formatted = data.map(item =>
+              typeof item === 'string' ? item : item.msg || JSON.stringify(item)
+            );
+            setUpdates(prev => [nextUpdate, ...formatted, ...prev].slice(0,10));
+          })
+          .catch(err => console.error(err))
+      }, 3000);
+      return () => clearInterval(interval);
   }, []);
 
   return (

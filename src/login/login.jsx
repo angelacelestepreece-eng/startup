@@ -14,18 +14,38 @@ export function Login({userName, authState, onAuthChange}) {
     if (savedEmail) setEmail(savedEmail);
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    localStorage.setItem('userName', email);
-    onAuthChange(email, AuthState.Authenticated);
-    setStatus(`Logged in as ${email}`);
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, password}),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      onAuthChange(data.email, AuthState.Authenticated);
+      setStatus('Logged in as ${data.email}');
+    } else {
+      setStatus('Login failed');
+    }
   };
 
-  const handleCreate = (e) => {
+  const handleCreate = async (e) => {
     e.preventDefault();
-    localStorage.setItem('userName', email);
-    onAuthChange(email, AuthState.Authenticated);
-    setStatus(`Account created for ${email}`);
+    const response = await fetch('/api/auth/create', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, password}),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      onAuthChange(data.email, AuthState.Authenticated);
+      setStatus('Account created for ${data.email}');
+    } else {
+      setStatus('Account creation failed');
+    }
   }
  
 
@@ -52,7 +72,14 @@ export function Login({userName, authState, onAuthChange}) {
         </Form>
         {status && <p className="mt-3 text-success">{status}</p>}
         {authState === AuthState.Authenticated && (
-          <Button variant="secondary" className="mt-3" onClick={() => onAuthChange('', AuthState.Unauthenticated)}>
+          <Button 
+            variant="secondary" 
+            className="mt-3" 
+            onClick={async () => {
+              await fetch('/api/auth/logout', {method: 'DELETE'});
+              onAuthChange('', AuthState.Unauthenticated);
+            }}  
+          >  
             Logout
           </Button>
         )}
