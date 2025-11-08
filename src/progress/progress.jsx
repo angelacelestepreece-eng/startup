@@ -32,7 +32,7 @@ export function Progress() {
             const formatted = data.map(item =>
               typeof item === 'string' ? item : item.msg || JSON.stringify(item)
             );
-            setUpdates(prev => [nextUpdate, ...formatted, ...prev].slice(0,10));
+            setUpdates([nextUpdate, ...formatted].slice(0,10));
           })
           .catch(err => console.error(err))
       }, 3000);

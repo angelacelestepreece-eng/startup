@@ -45,7 +45,7 @@ const handleAddGoal = async (e) => {
   const response = await fetch('/api/progress', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(`${userName} added new goal '${newGoal}'`),
+    body: JSON.stringify({msg: `${userName} added new goal '${newGoal}'`}),
   });
 
   if (response.ok) {
@@ -59,7 +59,7 @@ const handleProgressUpdate = async (index) => {
   const response = await fetch('/api/progress', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(`${userName} updated progress on '${goal.name}'`),
+    body: JSON.stringify({msg: `${userName} updated progress on '${goal.name}'`}),
   });
 
   if (response.ok) {
