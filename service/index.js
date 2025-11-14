@@ -13,7 +13,7 @@ let progress = [];
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('build'));
+app.use(express.static('public'));
 
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -101,7 +101,7 @@ function setAuthCookie(res, authToken) {
 }
 
 app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 app.use(function (err, req, res, next) {
