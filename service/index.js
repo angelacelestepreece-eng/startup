@@ -6,7 +6,7 @@ const app = express();
 const DB = require('./database.js');
 
 const authCookieName = 'token';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cookieParser());
