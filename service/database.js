@@ -16,17 +16,17 @@ let progressCollection;
     await db.command({ ping: 1 });
     console.log(`Connected to database`);
   } catch (ex) {
-    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    console.error(`Unable to connect to database: ${ex.message}`);
     process.exit(1);
   }
 })();
 
 function getUser(email) {
-  return usersCollection.findOne({ email: email });
+  return usersCollection.findOne({ email });
 }
 
 function getUserByToken(token) {
-  return usersCollection.findOne({ token: token });
+  return usersCollection.findOne({ token });
 }
 
 async function addUser(user) {
@@ -34,15 +34,23 @@ async function addUser(user) {
 }
 
 async function updateUser(user) {
-  await usersCollection.updateOne({ email: user.email }, { $set: user });
+  const { email, ...updates } = user;
+  await usersCollection.updateOne({ email }, { $set: updates });
+}
+
+async function clearToken(email) {
+  await usersCollection.updateOne({ email }, { $unset: { token: "" } });
 }
 
 async function addProgress(progress) {
-  return progressCollection.insertOne(progress);
+  return progressCollection.insertOne({
+    ...progress,
+    createdAt: new Date(),
+  });
 }
 
-function getProgress() {
-    return progressCollection.find({}).toArray();
+function getProgress(email) {
+  return progressCollection.find({ email }).toArray();
 }
 
 module.exports = {
@@ -50,6 +58,7 @@ module.exports = {
   getUserByToken,
   addUser,
   updateUser,
+  clearToken,
   addProgress,
   getProgress,
 };
