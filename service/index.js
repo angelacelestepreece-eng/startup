@@ -100,12 +100,12 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-})
-
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
+});
+
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
 });
 
 
