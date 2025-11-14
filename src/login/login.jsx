@@ -9,10 +9,6 @@ export function Login({userName, authState, onAuthChange}) {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('');
 
-  useEffect(() => {
-    localStorage.removeItem('userName');
-  }, []);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await fetch('/api/auth/login', {

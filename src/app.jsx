@@ -8,25 +8,22 @@ import { Dashboard } from './dashboard/dashboard';
 import { Progress } from './progress/progress';
 import { About } from './about/about';
 
-export default function App() {
-  const [authState, setAuthState] = useState(AuthState.Unknown);
-  const [userName, setUserName] = useState('');
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('userName');
-    if (storedUser) {
-      setUserName(storedUser);
-      setAuthState(AuthState.Authenticated);
-    } else {
-      setAuthState(AuthState.Unauthenticated);
-    }
-  }, []);
+function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
 
   const handleAuthChange = (email, state) => {
     setUserName(email);
     setAuthState(state);
-  };
 
+    if (state === AuthState.Authenticated) {
+      localStorage.setItem('userName', email);
+    } else {
+      localStorage.removeItem('userName');
+    }
+  }
+  
   return (
     <BrowserRouter>
       <div className="pink-bg text-dark">
