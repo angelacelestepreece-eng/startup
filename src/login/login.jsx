@@ -87,3 +87,5 @@ export function Login({userName, authState, onAuthChange}) {
     </main>
   );
 }
+
+export default App;
