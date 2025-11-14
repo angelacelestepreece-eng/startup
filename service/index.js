@@ -8,8 +8,30 @@ const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const path = require('path');
 
-let users = [];
-let progress = [];
+const { MongoClient } = require('mongodb');
+const config = require('./dbConfig.json');
+
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+
+let usersCollection;
+let progressCollection;
+
+async function connectDB() {
+  try {
+    await client.connect();
+    const db = client.db(config.database);
+    usersCollection = db.collection('users');
+    progressCollection = db.collection('progress');
+    await db.command({ ping: 1 });
+    console.log(`DB connected to ${config.hostname}`);
+  } catch (ex) {
+    console.error(`Mongo connection failed: ${ex.message}`);
+    process.exit(1);
+  }
+}
+
+connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -34,9 +56,10 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await usersCollection.updateOne({email: user.email}, {$set: {token: user.token}});
             setAuthCookie(res, user.token);
             res.send({email: user.email});
-            return
+            return;
         }
     }
     res.status(401).send({msg: 'Unauthorized'});
@@ -45,7 +68,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
         if (user) {
-            delete user.token;
+            await usersCollection.updateOne({ email: user.email }, { $unset: { token: "" }});
         }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -60,16 +83,18 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-apiRouter.get('/progress', verifyAuth, (req, res) => {
-    res.send(progress);
+apiRouter.get('/progress', verifyAuth, async (req, res) => {
+  const items = await progressCollection.find().toArray();  
+  res.send(items);
 });
 
-apiRouter.post('/progress', verifyAuth, (req, res) => {
+apiRouter.post('/progress', verifyAuth, async (req, res) => {
     if (!req.body.msg) {
         return res.status(400).send({msg: 'Missing message'});
     }
-    progress.unshift({ msg: req.body.msg });
-    res.send(progress);
+    await progressCollection.insertOne({ msg: req.body.msg });
+    const items = await progressCollection.find().toArray();
+    res.send(items);
 });
 
 async function createUser(email, password) {
@@ -80,15 +105,14 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
-
+  await usersCollection.insertOne(user);
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  return await usersCollection.findOne({ [field]: value });
 }
 
 function setAuthCookie(res, authToken) {
