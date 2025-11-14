@@ -23,7 +23,7 @@ function App() {
       localStorage.removeItem('userName');
     }
   }
-  
+
   return (
     <BrowserRouter>
       <div className="pink-bg text-dark">
@@ -97,3 +97,5 @@ function App() {
     );
   }
 }
+
+export default App;
