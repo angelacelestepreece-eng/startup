@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+const path = require('path');
 const DB = require('./database.js');
 
 const app = express();
@@ -75,7 +76,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 async function createUser(email, password) {
