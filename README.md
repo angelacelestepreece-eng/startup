@@ -129,8 +129,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - I did complete this part of the deliverable. I made sure to check on my cluster to see if it is storing it and it is.
+- [x] **Stores credentials in MongoDB** - I did complete this part of the deliverable. Again I made sure to check if this is working on my cluster and it is. (I also fixed the frontend error with being able to access /dashboard, /progress that was from my last deliveralbe)
 
 ## 🚀 WebSocket deliverable
 
