@@ -16,11 +16,9 @@ async function init() {
     console.log(`Connected to database`);
   } catch (ex) {
     console.error(`Unable to connect to database with ${url} because ${ex.message}`);
-    process.exit(1);
+    throw ex;
   }
 }
-
-init();
 
 function getUser(email) {
   return userCollection.findOne({ email });
@@ -47,6 +45,7 @@ function getProgress() {
 }
 
 module.exports = {
+  init,
   getUser,
   getUserByToken,
   addUser,

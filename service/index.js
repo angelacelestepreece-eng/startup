@@ -2,9 +2,9 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
-const app = express();
 const DB = require('./database.js');
 
+const app = express();
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -93,12 +93,17 @@ async function findUser(field, value) {
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     maxAge: 1000 * 60 * 60 * 24 * 365,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production', // only enforce secure in prod
     httpOnly: true,
     sameSite: 'strict',
   });
 }
 
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+DB.init().then(() => {
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+}).catch(err => {
+  console.error('Failed to initialize database:', err);
+  process.exit(1);
 });
