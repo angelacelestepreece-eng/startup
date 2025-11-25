@@ -4,6 +4,7 @@ const express = require('express');
 const uuid = require('uuid');
 const path = require('path');
 const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const app = express();
 const authCookieName = 'token';
@@ -100,10 +101,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-DB.init().then(() => {
-  app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-  });
-}).catch(err => {
-  console.error('Failed to initialize database:', err);
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
