@@ -15,19 +15,44 @@ function saveGoals(goals) {
   localStorage.setItem('goals', JSON.stringify(goals));
 }
 
-
 export function Dashboard({ userName }) {
   const [goals, setGoals] = useState(loadGoals());
   const [newGoal, setNewGoal] = useState('');
   const [suggestion] = useState(getMockGoalSuggestion());
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     saveGoals(goals);
   }, [goals]);
 
   useEffect(() => {
-    fetch('')
-  })
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const ws = new WebSocket(`${protocol}://${window.location.hostname}:${window.location.port}/ws`);
+
+    ws.onopen = () => console.log('WebSocket connected');
+    ws.onclose = () => console.log('WebSocket disconnected');
+    ws.onmessage = (msg) => {
+      try {
+        const event = JSON.parse(msg.data);
+        if (event.type === 'goalAdded') {
+          setGoals((prev) => [...prev, event.value.goal]);
+        } else if (event.type === 'goalUpdated') {
+          setGoals((prev) =>
+            prev.map((g, i) =>
+              i === event.value.index ? { ...g, progress: event.value.progress } : g
+            )
+          );
+        } else if (event.type === 'goalDeleted') {
+          setGoals((prev) => prev.filter((_, i) => i !== event.value.index));
+        }
+      } catch (err) {
+        console.error('Invalid WebSocket message', err);
+      }
+    };
+
+    setSocket(ws);
+    return () => ws.close();
+  }, []);
 
   const handleAddGoal = async (e) => {
     e.preventDefault();
@@ -40,8 +65,11 @@ export function Dashboard({ userName }) {
     });
 
     if (response.ok) {
-      setGoals([...goals, { name: newGoal, progress: 0 }]);
+      const goalObj = { name: newGoal, progress: 0 };
+      setGoals([...goals, goalObj]);
       setNewGoal('');
+
+      socket?.send(JSON.stringify({ type: 'goalAdded', from: userName, value: { goal: goalObj } }));
     }
   };
 
@@ -54,11 +82,12 @@ export function Dashboard({ userName }) {
     });
 
     if (response.ok) {
-      setGoals(prevGoals =>
-        prevGoals.map((g, i) =>
-          i === index ? { ...g, progress: Math.min(g.progress + 10, 100) } : g
-        )
+      const newProgress = Math.min(goal.progress + 10, 100);
+      setGoals((prevGoals) =>
+        prevGoals.map((g, i) => (i === index ? { ...g, progress: newProgress } : g))
       );
+
+      socket?.send(JSON.stringify({ type: 'goalUpdated', from: userName, value: { index, progress: newProgress } }));
     }
   };
 
@@ -70,10 +99,10 @@ export function Dashboard({ userName }) {
       body: JSON.stringify({ msg: `${userName} deleted goal '${goal.name}'` }),
     });
     if (response.ok) {
-      setGoals(prevGoals => prevGoals.filter((_, i) => i !== index));
+      setGoals((prevGoals) => prevGoals.filter((_, i) => i !== index));
+      socket?.send(JSON.stringify({ type: 'goalDeleted', from: userName, value: { index } }));
     }
-};
-
+  };
 
   return (
     <main className="cream-bg text-dark">
