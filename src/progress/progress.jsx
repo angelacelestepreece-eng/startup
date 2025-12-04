@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './progress.css';
-import { GoalNotifier, GoalEvent } from './goalNotifier';
+import { GoalNotifier, GoalEvent } from '../dashboard/dashboardNotifier';
 
 export function Progress() {
   const [serverUpdates, setServerUpdates] = useState([]);
