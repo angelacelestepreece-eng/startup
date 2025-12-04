@@ -19,18 +19,6 @@ export function Progress() {
     loadServerUpdates();
     const serverInterval = setInterval(loadServerUpdates, 5000);
 
-    const mockMessages = [
-      "Peter completed task for 'Book Report'",
-      "Lily added 'Save $500 for trip'",
-      "Brook completed task for 'Funding Project'",
-    ];
-    let index = 0;
-    const mockInterval = setInterval(() => {
-      const nextUpdate = mockMessages[index % mockMessages.length];
-      index++;
-      setMockUpdates(prev => [nextUpdate, ...prev].slice(0, 5)); // keep 5 mocks
-    }, 3000);
-
     const handleGoalEvent = (event) => {
       let msg = '';
       if (event.type === GoalEvent.Added) {
