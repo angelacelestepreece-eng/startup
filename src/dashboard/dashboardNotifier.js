@@ -20,7 +20,7 @@ class GoalEventNotifier {
   constructor() {
     const port = window.location.port;
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
     this.socket.onopen = () => {
       this.receiveEvent(new EventMessage('GroupGoal', GoalEvent.System, { msg: 'connected' }));

@@ -27,7 +27,8 @@ export function Dashboard({ userName }) {
 
   useEffect(() => {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    const ws = new WebSocket(`${protocol}://${window.location.hostname}:${window.location.port}/ws`);
+    const ws = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
 
     ws.onopen = () => console.log('WebSocket connected');
     ws.onclose = () => console.log('WebSocket disconnected');
