@@ -101,8 +101,17 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+async function startServer() {
+  try {
+    await DB.init();
+    const httpService = app.listen(port, () => {
+      console.log(`Listening on port ${port}`);
+    });
+    peerProxy(httpService);
+  } catch (err) {
+    console.error("Failed to initialize database", err);
+    process.exit(1);
+  }
+}
 
-peerProxy(httpService);
+startServer();
