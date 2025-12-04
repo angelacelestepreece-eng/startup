@@ -1,7 +1,8 @@
-const GameEvent = {
+const GoalEvent = {
   System: 'system',
-  End: 'gameEnd',
-  Start: 'gameStart',
+  Added: 'goalAdded',
+  Updated: 'goalUpdated',
+  Deleted: 'goalDeleted',
 };
 
 class EventMessage {
@@ -12,31 +13,38 @@ class EventMessage {
   }
 }
 
-class GameEventNotifier {
+class GoalEventNotifier {
   events = [];
   handlers = [];
 
   constructor() {
-    let port = window.location.port;
+    const port = window.location.port;
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-    this.socket.onopen = (event) => {
-      this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'connected' }));
+
+    this.socket.onopen = () => {
+      this.receiveEvent(new EventMessage('GroupGoal', GoalEvent.System, { msg: 'connected' }));
     };
-    this.socket.onclose = (event) => {
-      this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'disconnected' }));
+
+    this.socket.onclose = () => {
+      this.receiveEvent(new EventMessage('GroupGoal', GoalEvent.System, { msg: 'disconnected' }));
     };
-    this.socket.onmessage = async (msg) => {
+
+    this.socket.onmessage = (msg) => {
       try {
-        const event = JSON.parse(await msg.data.text());
+        const event = JSON.parse(msg.data);
         this.receiveEvent(event);
-      } catch {}
+      } catch (err) {
+        console.error('Invalid WebSocket message', err);
+      }
     };
   }
 
   broadcastEvent(from, type, value) {
     const event = new EventMessage(from, type, value);
-    this.socket.send(JSON.stringify(event));
+    if (this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(JSON.stringify(event));
+    }
   }
 
   addHandler(handler) {
@@ -44,19 +52,15 @@ class GameEventNotifier {
   }
 
   removeHandler(handler) {
-    this.handlers.filter((h) => h !== handler);
+    this.handlers = this.handlers.filter((h) => h !== handler);
   }
 
   receiveEvent(event) {
     this.events.push(event);
-
-    this.events.forEach((e) => {
-      this.handlers.forEach((handler) => {
-        handler(e);
-      });
-    });
+    this.handlers.forEach((handler) => handler(event));
   }
 }
 
-const GameNotifier = new GameEventNotifier();
-export { GameEvent, GameNotifier };
+const GoalNotifier = new GoalEventNotifier();
+
+export { GoalEvent, GoalNotifier };
