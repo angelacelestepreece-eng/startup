@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './progress.css';
+import { GoalNotifier, GoalEvent } from './goalNotifier';
 
 export function Progress() {
   const [serverUpdates, setServerUpdates] = useState([]);
-  const [mockUpdates, setMockUpdates] = useState([]);
 
   useEffect(() => {
     const loadServerUpdates = () => {
@@ -31,22 +31,37 @@ export function Progress() {
       setMockUpdates(prev => [nextUpdate, ...prev].slice(0, 5)); // keep 5 mocks
     }, 3000);
 
+    const handleGoalEvent = (event) => {
+      let msg = '';
+      if (event.type === GoalEvent.Added) {
+        msg = `${event.from} added "${event.value.goal.name}"`;
+      } else if (event.type === GoalEvent.Updated) {
+        msg = `${event.from} updated progress on "${event.value.index}"`;
+      } else if (event.type === GoalEvent.Deleted) {
+        msg = `${event.from} deleted a goal`;
+      } else if (event.type === GoalEvent.System) {
+        msg = event.value.msg;
+      }
+      if (msg) {
+        setServerUpdates(prev => [msg, ...prev]);
+      }
+    };
+    GoalNotifier.addHandler(handleGoalEvent);
+
     return () => {
       clearInterval(serverInterval);
-      clearInterval(mockInterval);
+      GoalNotifier.removeHandler(handleGoalEvent);
     };
   }, []);
 
-  const combined = [...mockUpdates, ...serverUpdates];
-  const unique = Array.from(new Set(combined));
-  const latestTen = unique.slice(0, 10);
+  const latestTen = serverUpdates.slice(0, 10);
 
   return (
     <main className="cream-bg text-dark">
       <h1>Group Progress Feed</h1>
       <div id="progress-feed">
         <h2>Live Group Activity</h2>
-        <p>Updates appear every few seconds</p>
+        <p>Updates appear automatically</p>
         <ul>
           {latestTen.map((update, i) => (
             <li key={i}>{update}</li>
